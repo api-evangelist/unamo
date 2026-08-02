@@ -1,0 +1,19 @@
+# Unamo
+
+> Unamo was a Warsaw, Poland based SaaS suite for SEO monitoring, social media
+> monitoring, and conversion optimization, formerly known as Positionly. The
+> company was backed by Point Nine Capital. As of 2026-07-21 the company appears
+> defunct: unamo.com no longer resolves in DNS (the domain is held at a
+> domain-reseller registrar), and the pre-rebrand site positionly.com serves a
+> stale 2017-era marketing page whose /api, /signup, /terms-of-service, and
+> /privacy-policy paths all return 404. No public API surface, packages, or
+> developer documentation remain online.
+
+## Profile
+
+- [APIs.json profile](https://raw.githubusercontent.com/api-evangelist/unamo/refs/heads/main/apis.yml): API Evangelist network profile for Unamo
+
+## Historical surfaces (no longer operational)
+
+- [unamo.com](https://unamo.com): former primary domain (NXDOMAIN as of 2026-07-21)
+- [positionly.com](https://positionly.com): former brand's site, still serving stale 2017 content

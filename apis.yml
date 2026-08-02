@@ -1,7 +1,23 @@
 aid: unamo
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/unamo.png
 name: Unamo
-description: Unamo is a company surfaced as a portfolio company of point-nine and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Unamo was a Warsaw, Poland based SaaS suite offering SEO monitoring, social
+  media monitoring, and conversion rate optimization, formerly known as Positionly,
+  and backed by Point Nine Capital. The company appears defunct as of July 2026, with
+  unamo.com no longer resolving in DNS and the pre-rebrand positionly.com site serving
+  stale 2017-era content whose API, signup, terms, and privacy pages return 404. No
+  public API surface, client packages, or developer documentation remain online.
 url: https://raw.githubusercontent.com/api-evangelist/unamo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,11 +25,24 @@ x-backed-by:
 - point-nine
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-status: defunct
+x-status-evidence:
+- unamo.com NXDOMAIN (no A/NS/MX/TXT records) as of 2026-07-21; domain registered
+  through 2027 at a domain-reseller registrar (TurnCommerce/NameBright)
+- positionly.com serves stale 2017-era marketing site; /api, /signup, /terms-of-service,
+  /privacy-policy all return 404 (probed 2026-07-21)
+- no first-party packages on npm/PyPI; github.com/unamo and github.com/positionly
+  are unrelated accounts (probed 2026-07-21)
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
+- SEO
+- Social Media
+- Analytics
+- Monitoring
+- Marketing
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +52,10 @@ maintainers:
 common:
 - type: Website
   url: https://unamo.com
+- type: LLMsTxt
+  url: llms/unamo-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
