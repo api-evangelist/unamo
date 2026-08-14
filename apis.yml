@@ -27,15 +27,24 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 x-status: defunct
 x-status-evidence:
-- unamo.com NXDOMAIN (no A/NS/MX/TXT records) as of 2026-07-21; domain registered
-  through 2027 at a domain-reseller registrar (TurnCommerce/NameBright)
+- unamo.com NXDOMAIN (no A/NS/SOA records) as of 2026-08-13; domain registered through
+  2027 at a domain-reseller registrar (TurnCommerce/NameBright)
 - positionly.com serves stale 2017-era marketing site; /api, /signup, /terms-of-service,
-  /privacy-policy all return 404 (probed 2026-07-21)
-- no first-party packages on npm/PyPI; github.com/unamo and github.com/positionly
+  /privacy-policy all return 404 (re-probed 2026-08-13)
+- positionly.com is no longer the company's own application — it is now a WordPress
+  rebuild of the 2017 marketing copy on a LiteSpeed shared host (ehostingsupport.com
+  nameservers), whose only /wp-json/wp/v2/users author is "Frank C. McNeil", unrelated
+  to the Warsaw team (probed 2026-08-13)
+- no first-party packages on npm/PyPI/RubyGems for unamo, positionly, unamo-api or
+  positionly-api (all 404, probed 2026-08-13); github.com/unamo and github.com/positionly
   are unrelated accounts (probed 2026-07-21)
+- STEP 0b contract discovery re-run 2026-08-13 against the only reachable host — every
+  OpenAPI/Swagger/GraphQL/llms.txt/.well-known candidate path returned the site's HTML
+  404 template, and api./app./developers./docs.positionly.com do not resolve (see
+  well-known/unamo-well-known.yml)
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 tags:
 - Company
 - SEO
@@ -55,7 +64,26 @@ common:
 - type: LLMsTxt
   url: llms/unamo-llms.txt
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-13'
   status: minimal
   artifacts_added: 1
   pass: local-v1
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    Unamo is dead — unamo.com returns NXDOMAIN with no A, NS or SOA records at all, and
+    the pre-rebrand domain positionly.com is now a third-party WordPress rebuild of the
+    2017 Positionly marketing site whose own /api link 404s.
+  evidence:
+  - url: https://unamo.com
+    status: 0
+  - url: https://positionly.com/api
+    status: 404
+  - url: https://positionly.com/openapi.json
+    status: 404
+  - url: https://positionly.com/.well-known/agent-card.json
+    status: 404
+  - url: https://positionly.com/
+    status: 200
+  checked: '2026-08-13'
