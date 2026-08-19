@@ -42,7 +42,7 @@ x-status-evidence:
   OpenAPI/Swagger/GraphQL/llms.txt/.well-known candidate path returned the site's HTML
   404 template, and api./app./developers./docs.positionly.com do not resolve (see
   well-known/unamo-well-known.yml)
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-13'
 tags:
