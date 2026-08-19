@@ -1,19 +1,30 @@
 # Unamo
 
 > Unamo was a Warsaw, Poland based SaaS suite for SEO monitoring, social media
-> monitoring, and conversion optimization, formerly known as Positionly. The
-> company was backed by Point Nine Capital. As of 2026-07-21 the company appears
-> defunct: unamo.com no longer resolves in DNS (the domain is held at a
-> domain-reseller registrar), and the pre-rebrand site positionly.com serves a
-> stale 2017-era marketing page whose /api, /signup, /terms-of-service, and
-> /privacy-policy paths all return 404. No public API surface, packages, or
-> developer documentation remain online.
+> monitoring, and conversion optimization, formerly known as Positionly. It was
+> backed by Point Nine Capital and was assembled by merging Positionly with two
+> acquisitions — Monitori (social media monitoring) and UsabilityTools (conversion
+> rate optimization). As of 2026-08-13 the company is defunct: unamo.com no longer
+> resolves in DNS at all (NXDOMAIN — no A, NS or SOA records), and positionly.com,
+> the pre-rebrand brand domain, has been rebuilt by an unrelated party as a
+> WordPress copy of the 2017-era marketing site. No public API surface, packages,
+> or developer documentation remain online.
 
 ## Profile
 
 - [APIs.json profile](https://raw.githubusercontent.com/api-evangelist/unamo/refs/heads/main/apis.yml): API Evangelist network profile for Unamo
+- [Well-known + contract probe](https://raw.githubusercontent.com/api-evangelist/unamo/refs/heads/main/well-known/unamo-well-known.yml): recorded absence — every /.well-known/ and OpenAPI candidate path probed, with the status each returned
 
 ## Historical surfaces (no longer operational)
 
-- [unamo.com](https://unamo.com): former primary domain (NXDOMAIN as of 2026-07-21)
-- [positionly.com](https://positionly.com): former brand's site, still serving stale 2017 content
+- [unamo.com](https://unamo.com): former primary domain — NXDOMAIN as of 2026-08-13, held at a domain-reseller registrar (TurnCommerce/NameBright) with registration paid through 2027
+- [positionly.com](https://positionly.com): former brand's domain — now a third-party WordPress rebuild of the 2017 marketing site, footer reads "© All rights reserved 2017. Positionly, Inc."; its /api, /signup, /terms-of-service and /privacy-policy paths all return 404
+
+## Notes for agents
+
+There is nothing here to call. Do not treat the WordPress REST API served at
+positionly.com/wp-json/ as a Unamo or Positionly product API — it is a generic CMS
+surface on a domain the company no longer operates, and its only author account is
+unrelated to the original team. The 2017 pricing table still reachable at
+positionly.com/plans-pricing/ advertises a product that has not been purchasable
+since the company went dark; it is not a live plans surface.

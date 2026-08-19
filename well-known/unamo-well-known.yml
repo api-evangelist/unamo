@@ -1,0 +1,133 @@
+generated: '2026-08-13'
+method: probed
+source: live probe of every host associated with Unamo / Positionly
+note: >-
+  Recorded absence. No /.well-known/ document was served by any host associated with
+  this company. unamo.com does not resolve at all (NXDOMAIN — no A, NS or SOA records),
+  so no HTTP request can be made against it. positionly.com, the pre-rebrand brand
+  domain, resolves and answers, but returns its WordPress 404 template (HTTP 404,
+  text/html, ~66KB) for every /.well-known/ path probed. No WellKnown or SecurityTxt
+  pointer is emitted, because nothing was served — this file documents an absence.
+hosts:
+  - host: unamo.com
+    resolves: false
+    resolution: NXDOMAIN
+    checked: '2026-08-13'
+    note: >-
+      No A, NS or SOA records. HTTPS connection attempts return curl exit code 6
+      (could not resolve host), recorded as status 000. Every /.well-known/ path is
+      therefore unreachable rather than 404.
+    documents:
+      - path: /.well-known/security.txt
+        status: 000
+        result: dns-failure
+      - path: /.well-known/openid-configuration
+        status: 000
+        result: dns-failure
+      - path: /.well-known/oauth-authorization-server
+        status: 000
+        result: dns-failure
+      - path: /.well-known/api-catalog
+        status: 000
+        result: dns-failure
+      - path: /.well-known/ai-plugin.json
+        status: 000
+        result: dns-failure
+      - path: /.well-known/agent-card.json
+        status: 000
+        result: dns-failure
+      - path: /.well-known/agent.json
+        status: 000
+        result: dns-failure
+
+  - host: positionly.com
+    resolves: true
+    address: 158.106.136.104
+    checked: '2026-08-13'
+    note: >-
+      Pre-rebrand brand domain. Answers HTTP/2 200 on the site root but returns the
+      site's HTML 404 template for every /.well-known/ path. See
+      x-domain-observations below — this host no longer appears to be operated by the
+      original company, so even a hit here would not have been credited to Unamo
+      without an ownership check.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        result: html-404-template
+      - path: /.well-known/openid-configuration
+        status: 404
+        result: html-404-template
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        result: html-404-template
+      - path: /.well-known/api-catalog
+        status: 404
+        result: html-404-template
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        result: html-404-template
+      - path: /.well-known/agent-card.json
+        status: 404
+        result: html-404-template
+      - path: /.well-known/agent.json
+        status: 404
+        result: html-404-template
+
+contract_discovery:
+  note: >-
+    STEP 0b contract-discovery sweep run against the only reachable host. Every REST
+    OpenAPI candidate path returned the same ~66KB HTML 404 template. No GraphQL
+    surface, no MCP endpoint, no agent card. There is no API host to probe: apis.yml
+    carries no apis[] entries and no baseURL, and the historical API host (api.unamo.com)
+    cannot resolve because the parent zone does not exist.
+  probed_host: https://positionly.com
+  checked: '2026-08-13'
+  paths:
+    - {path: /openapi.json, status: 404, result: html-404-template}
+    - {path: /openapi.yaml, status: 404, result: html-404-template}
+    - {path: /swagger.json, status: 404, result: html-404-template}
+    - {path: /v1/openapi.json, status: 404, result: html-404-template}
+    - {path: /api-docs, status: 404, result: html-404-template}
+    - {path: /docs, status: 404, result: html-404-template}
+    - {path: /redoc, status: 404, result: html-404-template}
+    - {path: /api, status: 404, result: html-404-template}
+    - {path: /api/v1, status: 404, result: html-404-template}
+    - {path: /graphql, status: 404, result: html-404-template}
+    - {path: /llms.txt, status: 404, result: html-404-template}
+    - {path: /developers, status: 404, result: html-404-template}
+    - {path: /developer, status: 404, result: html-404-template}
+    - {path: /api-documentation, status: 404, result: html-404-template}
+  subdomains_checked:
+    - {host: api.positionly.com, resolves: false}
+    - {host: app.positionly.com, resolves: false}
+    - {host: developers.positionly.com, resolves: false}
+    - {host: docs.positionly.com, resolves: false}
+    - {host: blog.positionly.com, resolves: true, address: 158.106.136.104}
+  result: no-machine-readable-contract-found
+
+x-domain-observations:
+  checked: '2026-08-13'
+  note: >-
+    positionly.com is no longer the original company's Rails application. It now serves
+    a WordPress rebuild of the 2017-era Positionly marketing copy from a LiteSpeed
+    shared host on ehostingsupport.com nameservers, with a Let's Encrypt certificate.
+    The WordPress REST API is open at /wp-json/ and its single author account is
+    "Frank C. McNeil" — not the Warsaw team behind Positionly/Unamo. The republished
+    marketing copy still links to /api, /plans-pricing/ and /app-sub/signin as though
+    the product were live; /api and /app-sub/signin return 404 and /plans-pricing/
+    serves a stale 2017 price table for a product that no longer exists.
+  evidence:
+    - {url: 'https://positionly.com/', status: 200, note: 'HTTP/2, server: LiteSpeed, Link: <https://positionly.com/wp-json/>; rel="https://api.w.org/"'}
+    - {url: 'https://positionly.com/wp-json/', status: 200, note: 'WordPress REST API root, site name "Positionly"'}
+    - {url: 'https://positionly.com/wp-json/wp/v2/users', status: 200, note: 'single author "Frank C. McNeil", slug admin3'}
+    - {url: 'https://positionly.com/api', status: 404}
+    - {url: 'https://positionly.com/app-sub/signin', status: 404}
+    - {url: 'https://positionly.com/plans-pricing/', status: 200, note: 'stale 2017 pricing, footer reads "© All rights reserved 2017. Positionly, Inc."'}
+  ownership_ruling: >-
+    The WordPress REST API at positionly.com/wp-json/ is NOT recorded as a Unamo API.
+    It is a generic CMS surface on a domain that is no longer operated by the company,
+    and it describes a WordPress installation rather than any Unamo or Positionly
+    product. Per the pipeline ownership check, no contract, plans, or rate-limit
+    artifact is derived from it. Likewise the 2017 pricing page is not captured as a
+    Plans artifact: it advertises a product that has not been purchasable since the
+    company went dark.
