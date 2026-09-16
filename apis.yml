@@ -51,7 +51,7 @@ x-status-evidence:
   do not resolve (see well-known/unamo-well-known.yml)
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-09-15'
+modified: '2026-09-16'
 tags:
 - Company
 - SEO
@@ -59,6 +59,7 @@ tags:
 - Analytics
 - Monitoring
 - Marketing
+- Defunct
 tags_raw:
 - Company
 - SEO
@@ -66,6 +67,7 @@ tags_raw:
 - Analytics
 - Monitoring
 - Marketing
+- Defunct
 apis: []
 maintainers:
 - FN: Kin Lane
